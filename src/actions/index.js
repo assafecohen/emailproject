@@ -4,7 +4,6 @@ export {
   filterBy,
   selectAllEmails,
   selectEmail,
-  rejectSelectedEmails,
-  tableType,
-  approveSelectedEmails
+  changeEmailStatus,
+  tableType
 } from './emails';

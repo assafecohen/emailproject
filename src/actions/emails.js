@@ -4,8 +4,7 @@ import {
   SELECT_ALL_EMAILS,
   SELECT_EMAIL,
   FETCH_EMAILS,
-  REJECT_SELECTED_EMAILS,
-  APPROVE_SELECTED_EMAILS,
+  CHANGE_EMAIL_STATUS,
   TABLE_TYPE
 } from './actionsTypes';
 
@@ -28,11 +27,9 @@ export const fetchEmails = emails => ({
   type: FETCH_EMAILS,
   emails
 });
-export const rejectSelectedEmails = () => ({
-  type: REJECT_SELECTED_EMAILS
-});
-export const approveSelectedEmails = () => ({
-  type: APPROVE_SELECTED_EMAILS
+export const changeEmailStatus = status => ({
+  type: CHANGE_EMAIL_STATUS,
+  status
 });
 export const tableType = tableType => ({
   type: TABLE_TYPE,

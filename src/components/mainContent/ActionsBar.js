@@ -80,14 +80,14 @@ const ActionsBar = () => {
 
         <Col>
           <StyledButton
-            onClick={() => dispatch(actions.approveSelectedEmails())}
+            onClick={() => dispatch(actions.changeEmailStatus('Approved'))}
           >
             Release
           </StyledButton>
         </Col>
         <Col>
           <StyledButton
-            onClick={() => dispatch(actions.rejectSelectedEmails())}
+            onClick={() => dispatch(actions.changeEmailStatus('Rejected'))}
           >
             Reject
           </StyledButton>

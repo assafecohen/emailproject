@@ -4,8 +4,7 @@ import {
   SELECT_EMAIL,
   SELECT_ALL_EMAILS,
   FETCH_EMAILS,
-  REJECT_SELECTED_EMAILS,
-  APPROVE_SELECTED_EMAILS,
+  CHANGE_EMAIL_STATUS,
   TABLE_TYPE
 } from '../actions/actionsTypes';
 import { serverDns } from '../config';
@@ -62,37 +61,14 @@ const emails = (state = initalState, action) => {
         ...state,
         emails: action.emails
       };
-    case REJECT_SELECTED_EMAILS:
+    case CHANGE_EMAIL_STATUS:
       const updatedEmails = state.emails.filter(email => {
         if (email.selected !== 0) {
+          email.status = action.status;
           return email;
         }
       });
       console.log(updatedEmails, 'updatedEmails');
-      if (updatedEmails.length) {
-        fetch(`${serverDns}:3001/emails`, {
-          method: 'PUT',
-          body: JSON.stringify({
-            updatedEmails
-          }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        })
-          .then(response => response.json())
-          .then(json => console.log(json));
-
-        return {
-          ...state,
-          emails: state.emails
-        };
-      }
-    case APPROVE_SELECTED_EMAILS:
-      const updatedEmails = state.emails.filter(email => {
-        if (email.selected !== 0) {
-          return email;
-        }
-      });
       if (updatedEmails.length) {
         fetch(`${serverDns}:3001/emails`, {
           method: 'PUT',
