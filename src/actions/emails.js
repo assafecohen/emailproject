@@ -5,6 +5,7 @@ import {
   SELECT_EMAIL,
   FETCH_EMAILS,
   REJECT_SELECTED_EMAILS,
+  APPROVE_SELECTED_EMAILS,
   TABLE_TYPE
 } from './actionsTypes';
 
@@ -29,6 +30,9 @@ export const fetchEmails = emails => ({
 });
 export const rejectSelectedEmails = () => ({
   type: REJECT_SELECTED_EMAILS
+});
+export const approveSelectedEmails = () => ({
+  type: APPROVE_SELECTED_EMAILS
 });
 export const tableType = tableType => ({
   type: TABLE_TYPE,

@@ -65,9 +65,9 @@ const ActionsBar = () => {
       <Row className='justify-content-md-center'>
         <Col>
           <div>
-            <label htmlFor='actionSelect1'>Status</label>
+            <label htmlFor='actionSelect'>Status</label>
             <select
-              id='actionSelect1'
+              id='actionSelect'
               onChange={e => dispatch(actions.filterBy(e.target.value))}
             >
               <option value='All Requests'>All Requests</option>
@@ -79,7 +79,11 @@ const ActionsBar = () => {
         </Col>
 
         <Col>
-          <StyledButton>Release</StyledButton>
+          <StyledButton
+            onClick={() => dispatch(actions.approveSelectedEmails())}
+          >
+            Release
+          </StyledButton>
         </Col>
         <Col>
           <StyledButton
