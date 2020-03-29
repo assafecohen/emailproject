@@ -86,7 +86,7 @@ const ActionsBar = () => {
           </StyledButton>
         </Col>
         <Col>
-          {tableType === 'ReleaseRequests' ? (
+          {tableType === 1 ? (
             <StyledButton
               onClick={() => dispatch(actions.changeEmailStatus('Rejected'))}
             >
