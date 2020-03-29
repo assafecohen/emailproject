@@ -64,7 +64,7 @@ const emails = (state = initalState, action) => {
       };
     case CHANGE_EMAIL_STATUS:
       const updatedEmails = state.emails.filter(email => {
-        if (email.selected !== 0) {
+        if (email.selected) {
           email.status = action.status;
           return email;
         }
@@ -90,7 +90,7 @@ const emails = (state = initalState, action) => {
       }
     case DELETE_EMAIL:
       const deleteEmails = state.emails.filter(email => {
-        if (email.selected !== 0) {
+        if (email.selected) {
           return email;
         }
       });
