@@ -72,6 +72,7 @@ const ActionsBar = () => {
               onChange={e => dispatch(actions.filterBy(e.target.value))}
             >
               <option value='All Requests'>All Requests</option>
+              <option value='Open'>Open</option>
               <option value='Approved'>Approved</option>
               <option value='Rejected'>Rejected</option>
             </select>
