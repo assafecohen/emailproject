@@ -5,5 +5,6 @@ export {
   selectAllEmails,
   selectEmail,
   changeEmailStatus,
-  tableType
+  tableType,
+  deleteEmail
 } from './emails';

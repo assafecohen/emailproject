@@ -57,12 +57,15 @@ const EmailsTable = () => {
             />
           </th>
           <th>ID</th>
-          {tableType === 'ReleaseRequests' ? (
-            <th>Request Time</th>
+          {tableType ? (
+            <>
+              <th>Request Time</th>
+              <th>Requested By</th>
+            </>
           ) : (
             <th>Sent Time</th>
           )}
-          <th>Requested By</th>
+
           <th>Recipient</th>
           <th>Sender</th>
           <th>Subject</th>
@@ -72,8 +75,8 @@ const EmailsTable = () => {
       <tbody>
         {emails.map(email => {
           return email.sender.indexOf(searchFilterText) !== -1 &&
-            (email.status === filterBy ||
-              (filterBy === 'All Requests' && email.requestTime !== null)) ? (
+            email.isRequested === tableType &&
+            (email.status === filterBy || filterBy === 'All Requests') ? (
             <EmailRow key={email.id} data={email} />
           ) : null;
         })}

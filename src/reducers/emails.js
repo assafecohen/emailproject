@@ -5,7 +5,8 @@ import {
   SELECT_ALL_EMAILS,
   FETCH_EMAILS,
   CHANGE_EMAIL_STATUS,
-  TABLE_TYPE
+  TABLE_TYPE,
+  DELETE_EMAIL
 } from '../actions/actionsTypes';
 import { serverDns } from '../config';
 const initalState = {
@@ -13,7 +14,7 @@ const initalState = {
   selectEmails: false,
   filterBy: 'All Requests',
   searchFilterText: '',
-  tableType: 'ReleaseRequests'
+  tableType: 1
 };
 
 const emails = (state = initalState, action) => {
@@ -74,6 +75,31 @@ const emails = (state = initalState, action) => {
           method: 'PUT',
           body: JSON.stringify({
             updatedEmails
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        })
+          .then(response => response.json())
+          .then(json => console.log(json));
+
+        return {
+          ...state,
+          emails: state.emails
+        };
+      }
+    case DELETE_EMAIL:
+      const deleteEmails = state.emails.filter(email => {
+        if (email.selected !== 0) {
+          return email;
+        }
+      });
+      console.log(deleteEmails, 'deleteEmails');
+      if (deleteEmails.length) {
+        fetch(`${serverDns}:3001/emails`, {
+          method: 'DELETE',
+          body: JSON.stringify({
+            deleteEmails
           }),
           headers: {
             'Content-type': 'application/json; charset=UTF-8'

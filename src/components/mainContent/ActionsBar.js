@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../actions/';
 import styled from 'styled-components';
 import Row from 'react-bootstrap/Row';
@@ -48,6 +48,7 @@ const StyledButton = styled.button`
   }
 `;
 const ActionsBar = () => {
+  const tableType = useSelector(state => state.emails.tableType);
   const dispatch = useDispatch();
   const handleRefreshEmails = () => {
     fetch(`${serverDns}:3001/emails`)
@@ -71,7 +72,6 @@ const ActionsBar = () => {
               onChange={e => dispatch(actions.filterBy(e.target.value))}
             >
               <option value='All Requests'>All Requests</option>
-              <option value='Open'>Open</option>
               <option value='Approved'>Approved</option>
               <option value='Rejected'>Rejected</option>
             </select>
@@ -86,11 +86,19 @@ const ActionsBar = () => {
           </StyledButton>
         </Col>
         <Col>
-          <StyledButton
-            onClick={() => dispatch(actions.changeEmailStatus('Rejected'))}
-          >
-            Reject
-          </StyledButton>
+          {tableType === 'ReleaseRequests' ? (
+            <StyledButton
+              onClick={() => dispatch(actions.changeEmailStatus('Rejected'))}
+            >
+              Reject
+            </StyledButton>
+          ) : (
+            <StyledButton
+              onClick={() => dispatch(actions.deleteEmail('Delete'))}
+            >
+              Delete
+            </StyledButton>
+          )}
         </Col>
         <Col>
           <StyledButton onClick={() => handleRefreshEmails()}>

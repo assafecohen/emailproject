@@ -16,12 +16,14 @@ const EmailRow = ({ data }) => {
         />
       </td>
       <td>{data.id}</td>
-      {tableType === 'ReleaseRequests' ? (
-        <td>{data.requestTime}</td>
+      {tableType === 1 ? (
+        <>
+          <td>{data.requestTime}</td>
+          <td>{data.requestedBy}</td>
+        </>
       ) : (
         <td>{data.sentTime}</td>
       )}
-      <td>{data.requestedBy}</td>
       <td>{data.recipient}</td>
       <td>{data.sender}</td>
       <td>{data.subject}</td>

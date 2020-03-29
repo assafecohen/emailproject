@@ -5,7 +5,8 @@ import {
   SELECT_EMAIL,
   FETCH_EMAILS,
   CHANGE_EMAIL_STATUS,
-  TABLE_TYPE
+  TABLE_TYPE,
+  DELETE_EMAIL
 } from './actionsTypes';
 
 export const selectEmail = id => ({
@@ -30,6 +31,9 @@ export const fetchEmails = emails => ({
 export const changeEmailStatus = status => ({
   type: CHANGE_EMAIL_STATUS,
   status
+});
+export const deleteEmail = id => ({
+  type: DELETE_EMAIL
 });
 export const tableType = tableType => ({
   type: TABLE_TYPE,
