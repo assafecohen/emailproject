@@ -102,7 +102,7 @@ const ActionsBar = () => {
         </Col>
         <Col>
           <StyledButton onClick={() => handleRefreshEmails()}>
-            ❤Refresh
+            Refresh
           </StyledButton>
         </Col>
         <Col>
